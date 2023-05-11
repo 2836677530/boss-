@@ -4,7 +4,7 @@ from folium.plugins import HeatMap
 import numpy as np
 import webbrowser
 
-data=pd.read_csv('demosite.csv',engine='python')
+data=pd.read_csv('siteinfo.csv',encoding='gbk')
 del data['site']
 list1=data.values.tolist()
 
