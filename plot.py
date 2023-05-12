@@ -1,71 +1,78 @@
 import matplotlib.pyplot as plt
 import matplotlib as mql
-import pandas as pa
+import pandas as pd
 
 import jieba
 import collections
 from wordcloud import WordCloud
 
-data=pa.read_csv('newjava.csv')
+
+jieba.setLogLevel(jieba.logging.INFO)
+
+
+
+data=pd.read_csv('C:\\Users\\LUORONG\\Desktop\\数据分析\\newjava.csv')
 #从业经验
-exp=[]
-nums=[0,0,0,0,0]
-counts=0
-dataExp=data['experience'].value_counts()
-for i in dataExp.index:
-    if '10年以上'==i:
-        nums[0]=dataExp[i]
-    elif '5-10年'== i:
+# exp=[]
+# nums=[0,0,0,0,0]
+# counts=0
+# dataExp=data['experience'].value_counts()
+# for i in dataExp.index:
+#     if '10年以上'==i:
+#         nums[0]=dataExp[i]
+#     elif '5-10年'== i:
         
-        nums[1]=dataExp[i]
-    elif '3-5年'==i:
+#         nums[1]=dataExp[i]
+#     elif '3-5年'==i:
         
-        nums[2]=dataExp[i]
-    elif '1-3年'==i:
+#         nums[2]=dataExp[i]
+#     elif '1-3年'==i:
      
-        nums[3]=dataExp[i]
-    else:
+#         nums[3]=dataExp[i]
+#     else:
         
-        counts=counts+dataExp[i]
-        nums[4]=counts
-exp=['10年以上','5-10年','3-5年','1-3年','应届']
+#         counts=counts+dataExp[i]
+#         nums[4]=counts
+# exp=['10年以上','5-10年','3-5年','1-3年','应届']
 
-colors=['#FF0000','#0000CD','#00bFFF','#008000','#FF1493','#FFD700','#FF4500']
-mql.rcParams['font.family']='SimHei'
-labels=exp
-plt.style.use('ggplot')
-plt.figure(figsize=(8,6),dpi=100)
-plt.barh(labels,nums,height=0.36,color=colors)
-plt.title('岗位工作经验要求',fontsize=16)
-plt.xlabel('数量',fontsize=12)
-plt.show()
-print(nums,dataExp)
-
-        
-
-
-#技术要求词云
-# word_list=[]
-# jieba.load_userdict('java.txt')
-# for i in data['techRequire']:
-#     str= ','.join(jieba.lcut(i,use_paddle=True))
-#     for j in str.split(','):
-#         word_list.append(j)
-# print(word_list)
-# word_counts=collections.Counter(word_list)
-
-# my_cloud=WordCloud(
-#     background_color='white',
-#     width=900,height=500,
-#     font_path='simhei.ttf',
-#     max_font_size=120,
-#     min_font_size=15,
-#     random_state=60
-# ).generate_from_frequencies(word_counts)
-# plt.imshow(my_cloud,interpolation='bilinear')
-
-# plt.axis('off')
+# colors=['#FF0000','#0000CD','#00bFFF','#008000','#FF1493','#FFD700','#FF4500']
+# mql.rcParams['font.family']='SimHei'
+# labels=exp
+# plt.style.use('ggplot')
+# plt.figure(figsize=(8,6),dpi=100)
+# plt.barh(labels,nums,height=0.36,color=colors)
+# plt.title('岗位工作经验要求',fontsize=16)
+# plt.xlabel('数量',fontsize=12)
 # plt.show()
+# print(nums,dataExp)
+
+        
+
+
+# 技术要求词云
+word_list=[]
+jieba.load_userdict('C:\\Users\\LUORONG\\Desktop\\数据分析\\java.txt')
+for i in data['techRequire']:
+    str= ','.join(jieba.lcut(i,use_paddle=True))
+    for j in str.split(','):
+        word_list.append(j)
+# print(word_list)
+word_counts=collections.Counter(word_list)
+# print(word_counts)
+
+
+my_cloud=WordCloud(
+    background_color='white',
+    width=900,height=500,
+    font_path='simhei.ttf',
+    max_font_size=120,
+    min_font_size=15,
+    random_state=60
+).generate_from_frequencies(word_counts)
+plt.imshow(my_cloud,interpolation='bilinear')
+
+plt.axis('off')
+plt.show()
 #岗位薪资水平
 # level1=0
 # level2=0
