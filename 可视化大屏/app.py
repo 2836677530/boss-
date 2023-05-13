@@ -19,7 +19,7 @@ def sinde():
 
 @app.route('/expCounts',methods=['GET', 'POST'])
 def expCounts():
-    data=pd.read_csv('../newjava.csv')
+    data=pd.read_csv('C:\\Users\\LUORONG\\Desktop\\数据分析\\newjava.csv')
     nums=[0,0,0,0,0]
     counts=0
     dataExp=data['experience'].value_counts()
@@ -48,7 +48,7 @@ def expCounts():
 # @app.route('/sitedata',methods=['GET','POST'])
 @app.route('/data',methods=['GET','POST'])
 def sitedata():
-    data=pd.read_csv('../newjava.csv')
+    data=pd.read_csv('C:\\Users\\LUORONG\\Desktop\\数据分析\\newjava.csv')
     grouped=[]
     for i in data['site']:
         if '地址' in i:
@@ -66,7 +66,7 @@ def sitedata():
 
 @app.route('/circle',methods=['GET','POST'])
 def eduCircle():
-    data=pd.read_csv('../newjava.csv')
+    data=pd.read_csv('C:\\Users\\LUORONG\\Desktop\\数据分析\\newjava.csv')
     edu=data['eduBackground'].value_counts()
     nums=[0,0,0,0]
     for i in edu.index:
@@ -91,7 +91,7 @@ def eduCircle():
 
 @app.route('/wordclound',methods=['GET','POST'])
 def worldclound():
-    data=pd.read_csv('../newjava.csv')
+    data=pd.read_csv('C:\\Users\\LUORONG\\Desktop\\数据分析\\newjava.csv')
     word_list=[]
     jieba.load_userdict('C:\\Users\\LUORONG\\Desktop\\数据分析\\java.txt')
     for i in data['techRequire']:
@@ -115,7 +115,7 @@ def worldclound():
     return {'key_words': key_words}
 @app.route('/count',methods=['GET','POST'])
 def salary():
-    data=pd.read_csv('../newjava.csv')
+    data=pd.read_csv('C:\\Users\\LUORONG\\Desktop\\数据分析\\newjava.csv')
     level1=0
     level2=0
     level3=0
@@ -143,7 +143,7 @@ def salary():
     return {'salary':labels,'values':nums}
 @app.route('/cityinfo',methods=['GET','POST'])
 def map():
-    data=pd.read_csv('../siteinfo.csv',encoding='gbk')
+    data=pd.read_csv('C:\\Users\\LUORONG\\Desktop\\数据分析\\siteinfo.csv',encoding='gbk')
 
     site_counts=data['site'].value_counts()
     key=['value','name']
